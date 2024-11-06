@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Word Counter</title>
+  <!-- Link to External CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <h1>Word Counter</h1>
+  <div class="input-container">
+    <textarea id="sentenceInput" placeholder="Type your sentence here..." rows="5"></textarea>
+    <br>
+    <button id="countWordsButton">Count Words</button>
+    <div id="wordCountResult" class="result"></div>
+  </div>
+
+  <script>
+    document.getElementById('countWordsButton').addEventListener('click', function() {
+      const sentence = document.getElementById('sentenceInput').value.trim();
+      const words = sentence.split(/\s+/).filter(word => word.length > 0); // Handle multiple spaces
+
+      const result = document.getElementById('wordCountResult');
+      
+      if (sentence === "") {
+        result.textContent = "Please enter a sentence.";
+        result.classList.add('error');
+        result.classList.remove('result');
+      } else {
+        result.textContent = `Your sentence contains ${words.length} words.`;
+        result.classList.remove('error');
+        result.classList.add('result');
+      }
+    });
+  </script>
+
+</body>
+</html>
